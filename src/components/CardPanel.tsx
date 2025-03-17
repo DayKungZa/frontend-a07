@@ -2,6 +2,7 @@
 import { useReducer } from "react";
 import Card from "./Card";
 import RatingDisplay from "./RatingDisplay";
+import Link from "next/link";
 
 
 // Reducer function to manage ratings
@@ -35,6 +36,7 @@ export default function CardPanel() {
       <div className="flex flex-nowrap justify-center w-full">
       {
         venueRepo.map((venue)=>(
+          <Link href={`/venue/${venue.vid}`}>
           <Card
             vid={venue.vid}
             venueName={venue.venueName}
@@ -42,6 +44,7 @@ export default function CardPanel() {
             description={venue.description}
             dispatch={dispatch}
           />
+          </Link>
         ))
       }
       </div>

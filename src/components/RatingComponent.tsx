@@ -11,8 +11,8 @@ export default function RatingComponent({ venueName, dispatch }: RatingProps) {
     <div data-testid={`${venueName} Rating`} className="text-black">
       <Rating
         name={venueName}
+        onClick={(e)=>e.stopPropagation()}
         onChange={(_, newValue) => {
-          _.preventDefault();
           if (newValue) {
             dispatch({ type: "SET_RATING", venue: venueName, rating: newValue });
           }
