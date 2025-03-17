@@ -12,6 +12,7 @@ export default function RatingComponent({ venueName, dispatch }: RatingProps) {
       <Rating
         name={venueName}
         onChange={(_, newValue) => {
+          _.preventDefault();
           if (newValue) {
             dispatch({ type: "SET_RATING", venue: venueName, rating: newValue });
           }

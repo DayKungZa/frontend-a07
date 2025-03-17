@@ -14,19 +14,18 @@ interface CardProps {
 export default function Card({ venueName, imgSrc, description, vid, dispatch }: CardProps) {
   return (
     <div className="flex flex-col bg-purple-200 w-[100%] rounded-lg p-3 mx-3 my-6">
-      <Link href={`/venue/${vid}`} className="block">
         <InteractiveCard>
-          <Image className="rounded-lg" src={imgSrc} alt={venueName} width={400} height={300} />
-          <div className="px-2 py-3 h-[90%]">
-            <h2 className="text-3xl font-bold text-purple-900">{venueName}</h2>
-            <p className="text-black">{description}</p>
+          <Link href={`/venue/${vid}`}>
+            <Image className="rounded-lg" src={imgSrc} alt={venueName} width={400} height={300} />
+            <div className="px-2 py-3">
+              <h2 className="text-3xl font-bold text-purple-900">{venueName}</h2>
+              <p className="text-black">{description}</p>
+            </div>
+          </Link>
+          <div className="mt-auto px-2">
+            <RatingComponent venueName={venueName} dispatch={dispatch} />
           </div>
         </InteractiveCard>
-      </Link>
-      <div className="mt-auto mt-3 bg-white rounded-lg px-2">
-        <p className="py-2 text-black">Rating:</p>
-        <RatingComponent venueName={venueName} dispatch={dispatch} />
-      </div>
     </div>
   );
 }
