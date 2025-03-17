@@ -3,6 +3,7 @@ import { useReducer } from "react";
 import Card from "./Card";
 import RatingDisplay from "./RatingDisplay";
 
+
 // Reducer function to manage ratings
 function ratingReducer(state: Map<string, number>, action: { type: string; venue: string; rating?: number }) {
   const newState = new Map(state);
@@ -21,15 +22,28 @@ export default function CardPanel() {
     ["The Grand Table", 0],
   ]);
 
+  const venueRepo = [
+    {vid:"001", venueName:"The Bloom Pavilion", imgSrc:"/img/bloom.jpg", description:"Blooming flowers pavilion."},
+    {vid:"002", venueName:"Spark Space", imgSrc:"/img/sparkspace.jpg", description:"Creative space for ideas."},
+    {vid:"003", venueName:"The Grand Table", imgSrc:"/img/grandtable.jpg", description:"A grand table for events."}
+  ]
+
   const [ratings, dispatch] = useReducer(ratingReducer, initialRatings);
 
   return (
-    <div className="flex flex-col items-center w-full">
-      {/* Cards */}
+    <div className="flex flex-col items-center w-full h-[90%]">
       <div className="flex flex-nowrap justify-center w-full">
-        <Card venueName="The Bloom Pavilion" imgSrc="/img/bloom.jpg" description="Blooming flowers pavilion." dispatch={dispatch} />
-        <Card venueName="Spark Space" imgSrc="/img/sparkspace.jpg" description="Creative space for ideas." dispatch={dispatch} />
-        <Card venueName="The Grand Table" imgSrc="/img/grandtable.jpg" description="A grand table for events." dispatch={dispatch} />
+      {
+        venueRepo.map((venue)=>(
+          <Card
+            vid={venue.vid}
+            venueName={venue.venueName}
+            imgSrc={venue.imgSrc}
+            description={venue.description}
+            dispatch={dispatch}
+          />
+        ))
+      }
       </div>
 
       {/* Rating Display */}
